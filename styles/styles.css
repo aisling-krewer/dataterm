@@ -55,8 +55,8 @@ ul {
   float: right;
   margin: 0;
   padding: 0;
-  -webkit-animation: scrollUp 10s ease-in-out infinite normal;
-  animation: scrollUp 10s ease-in-out infinite normal;
+  -webkit-animation: scrollUp 40s linear infinite normal;
+  animation: scrollUp 40s linear infinite normal;
 }
 ul li {
   opacity: 1;
