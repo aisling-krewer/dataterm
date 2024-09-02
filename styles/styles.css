@@ -51,10 +51,6 @@
   position: absolute;
 }
 
-p {
-  float: left;
-}
-
 ul {
   float: right;
   margin: 0;
@@ -89,4 +85,10 @@ ul li {
     -webkit-transform: translateY(-80%);
     transform: translateY(-80%);
   }
+}
+
+#marketDisplay {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
 }
