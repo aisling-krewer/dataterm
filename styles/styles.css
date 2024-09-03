@@ -22,17 +22,16 @@
 #newsfeed {
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
+  font-size: 20px;
 }
 
-.box {
+.feed {
   height: 400px;
   overflow: hidden;
   position: relative;
 }
-.box::before {
+
+.feed::before {
   top: 0;
   left: 0;
   z-index: 1;
@@ -41,7 +40,8 @@
   height: 100px;
   position: absolute;
 }
-.box::after {
+
+.feed::after {
   left: 0;
   bottom: 0;
   z-index: 1;
@@ -51,18 +51,18 @@
   position: absolute;
 }
 
-ul {
+.dt-list {
   float: right;
   margin: 0;
   padding: 0;
   -webkit-animation: scrollUp 40s linear infinite normal;
   animation: scrollUp 40s linear infinite normal;
 }
-ul li {
-  opacity: 1;
-  height: 200px;
-  padding: 100px;
+
+.dt-item {
+  padding: 50px;
   list-style: none;
+  height: 200px;
 }
 
 @-webkit-keyframes scrollUp {
@@ -91,4 +91,65 @@ ul li {
   display: flex;
   justify-content: space-around;
   margin: 10px;
+}
+
+body::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06)
+    );
+  background-size: auto, auto;
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+body {
+  font-family: "Tomorrow", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #272d2d;
+  color: red;
+}
+
+.welcome.dt-entry {
+  padding: 25px;
+}
+.dt-entry {
+  margin: 20px;
+  border: 2px solid red;
+}
+
+.dt-line {
+  height: 3px;
+  width: 0px;
+  background-color: red;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 3px;
+  max-height: 3px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.dl-time {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.dl-title {
+  font-weight: 700;
+  font-style: italic;
 }
