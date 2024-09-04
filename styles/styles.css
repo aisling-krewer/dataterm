@@ -1,10 +1,11 @@
 .header {
-  background-color: #000;
-  color: #fff;
+  color: red;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid red;
+  margin: 0px 25px;
 }
 
 .welcome {
@@ -90,7 +91,9 @@
 #marketDisplay {
   display: flex;
   justify-content: space-around;
-  margin: 10px;
+  border: 2px solid red;
+  margin: 30px 0;
+  padding: 0 30px;
 }
 
 body::before {
@@ -144,12 +147,37 @@ body {
   margin-bottom: 5px;
 }
 
-.dl-time {
+.dt-time {
   font-size: 14px;
   font-style: italic;
 }
 
-.dl-title {
+.dt-title {
   font-weight: 700;
   font-style: italic;
+}
+
+.dt-generator {
+  padding: 25px;
+  width: 100%;
+  
+}
+
+#generateButton {
+  background: transparent;
+  padding: 10px;
+  border: 2px solid red;
+  color: red;
+  font-family: "Tomorrow", sans-serif;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.advert{
+  max-width: 100%;
+}
+
+.advert img {
+  width: 100%;
+  opacity: 0.8;
 }
