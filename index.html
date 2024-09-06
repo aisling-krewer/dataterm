@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DataTerm</title>
     <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="header">
@@ -18,84 +21,112 @@
       </div>
     </div>
     <div id="newsfeed">
-    <!--Section: Welcome to Dataterm Network-->
-    <div class="welcome dt-entry">
-      <h1>WELCOME TO DATATERM™</h1>
-      <div class="dt-line"></div>
-      <p>Download, print or check out the news with DATATERM™</p>
-    </div>
+      <!--Section: Welcome to Dataterm Network-->
+      <div class="welcome dt-entry">
+        <h1>WELCOME TO DATATERM™</h1>
+        <div class="dt-line"></div>
+        <p>Download, print or check out the news with DATATERM™</p>
 
-    <!--Section: Sidebar, scrolling news and advertisements-->
-    
+        <form id="authForm">
+          <input type="email" id="email" placeholder="Email" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Sign Up / Sign In</button>
+        </form>
+        <button id="signOutBtn">Sign Out</button>
+        <button id="anonymousSignInBtn">Sign In Anonymously</button>
+      </div>
+
+      <!--Section: Sidebar, scrolling news and advertisements-->
+
       <section class="feed dt-entry">
-          <div class="dt-list">
-            <div class="dt-item">
-              <span class="dt-time">09:12</span>
-              TODAY AT THE SOURCE:
-              Jericho Hunt interviews Woodchipper, to discuss our hungry city’s buffet line of firearms and firearm accessories and some new products that are coming soon for sale.
-            </div>
-            <div class="dt-item">
-            <div class="advert"><img src="images/banners/KADO_1.jpg"></div>
-            </div>
-            <div class="dt-item">
-              <span class="dt-time">10.23</span>
-              SPONSORED:
-              Mr. A-MAAAAAAZE here with an unskippable ad to let you know what’s hot this week to BUY BUY BUY. That’s right CHOOOOMBAS, I know you just got paid and are looking for that next shiny something to make your life better, easier, and healthier. And I’m asking you:
-  
-              Why did you make me go out and buy this ad?
-              
-              You know you should have just taken a Combat Cabb straight to the House of MAAAAAZE—Dock 13 in sunny South Night City to get you hooked up. We’ve cracked a brand new cargo container of premium cyberware that will get you so chromed up you’ll walk, talk, and dance into oncoming traffic as a brilliant, beautiful NEW you.
-            </div>
-            <div class="dt-item">
-              <span class="dt-time">10.30</span>
-              N64 News:
-              VIRTUAL NETWORK GLITCH CAUSES WIDESPREAD OUTAGES
-              Users experience downtime across major city nodes.
-            </div>
-            <div class="dt-item">
-              <div class="advert"><img src="images/banners/Jacana2.png"></div>
-              </div>
-            <div class="dt-item">
-              <span class="dt-time">10.34</span>
-              KLIA Garden Patch Network:
-              Rebuilding Night City's Angie Woo 2.0 talks to Gabriel Yang of Yang’s Wheels, to talk the resurgance of bicyles and the story of one of the biggest business success stories in the Time of the Red. 
-            </div>
-            <div class="dt-item">
-              <span class="dt-time">10.45</span>
-              Hustling with 3-Piece:
-              3-Piece talks about salvaging for fun and profit in the ruins of Night City. Learn the essentials, the dangers, and the best locations to find the best loot.
-            </div>
-  
-            <div class="dt-item">
-              <span class="dt-time">11.02</span>
-              N64 News:
-              NEON SUN CORPORATION FILES FOR BANKRUPTCY
-              Reports indicate heavy losses in the energy sector.
-            </div>
-
-            <div class="dt-item">
-              <span class="dt-time">11.22</span>
-              NIGHT CITY BEAT DOWN:
-              Drama strikes again at the Battle of the Bands. Last Time I Wore An Impractical Dress I Killed Four Men are through to the next round after a bloody performance, but this morning we debate who their greatest competition will be.
-            </div>
-  
-            <div class="dt-item">
-              <span class="dt-time">09:12</span>
-              TODAY AT THE SOURCE:
-              Jericho Hunt interviews Woodchipper, to discuss our hungry city’s buffet line of firearms and firearm accessories and some new products that are coming soon for sale.
-            </div>
-
-            <div class="dt-item">
-              <span class="dt-time">10.23</span>
-              SPONSORED:
-              Mr. A-MAAAAAAZE here with an unskippable ad to let you know what’s hot this week to BUY BUY BUY. That’s right CHOOOOMBAS, I know you just got paid and are looking for that next shiny something to make your life better, easier, and healthier. And I’m asking you:
-  
-              Why did you make me go out and buy this ad?
-              
-              You know you should have just taken a Combat Cabb straight to the House of MAAAAAZE—Dock 13 in sunny South Night City to get you hooked up. We’ve cracked a brand new cargo container of premium cyberware that will get you so chromed up you’ll walk, talk, and dance into oncoming traffic as a brilliant, beautiful NEW you.
-            </div>
+        <div class="dt-list">
+          <div class="dt-item">
+            <span class="dt-time">09:12</span>
+            TODAY AT THE SOURCE: Jericho Hunt interviews Woodchipper, to discuss
+            our hungry city’s buffet line of firearms and firearm accessories
+            and some new products that are coming soon for sale.
           </div>
+          <div class="dt-item">
+            <div class="advert"><img src="images/banners/KADO_1.jpg" /></div>
+          </div>
+          <div class="dt-item">
+            <span class="dt-time">10.23</span>
+            SPONSORED: Mr. A-MAAAAAAZE here with an unskippable ad to let you
+            know what’s hot this week to BUY BUY BUY. That’s right CHOOOOMBAS, I
+            know you just got paid and are looking for that next shiny something
+            to make your life better, easier, and healthier. And I’m asking you:
+            Why did you make me go out and buy this ad? You know you should have
+            just taken a Combat Cabb straight to the House of MAAAAAZE—Dock 13
+            in sunny South Night City to get you hooked up. We’ve cracked a
+            brand new cargo container of premium cyberware that will get you so
+            chromed up you’ll walk, talk, and dance into oncoming traffic as a
+            brilliant, beautiful NEW you.
+          </div>
+          <div class="dt-item">
+            <span class="dt-time">10.30</span>
+            N64 News: VIRTUAL NETWORK GLITCH CAUSES WIDESPREAD OUTAGES Users
+            experience downtime across major city nodes.
+          </div>
+          <div class="dt-item">
+            <div class="advert"><img src="images/banners/Jacana2.png" /></div>
+          </div>
+          <div class="dt-item">
+            <span class="dt-time">10.34</span>
+            KLIA Garden Patch Network: Rebuilding Night City's Angie Woo 2.0
+            talks to Gabriel Yang of Yang’s Wheels, to talk the resurgance of
+            bicyles and the story of one of the biggest business success stories
+            in the Time of the Red.
+          </div>
+          <div class="dt-item">
+            <span class="dt-time">10.45</span>
+            Hustling with 3-Piece: 3-Piece talks about salvaging for fun and
+            profit in the ruins of Night City. Learn the essentials, the
+            dangers, and the best locations to find the best loot.
+          </div>
+
+          <div class="dt-item">
+            <span class="dt-time">11.02</span>
+            N64 News: NEON SUN CORPORATION FILES FOR BANKRUPTCY Reports indicate
+            heavy losses in the energy sector.
+          </div>
+
+          <div class="dt-item">
+            <span class="dt-time">11.22</span>
+            NIGHT CITY BEAT DOWN: Drama strikes again at the Battle of the
+            Bands. Last Time I Wore An Impractical Dress I Killed Four Men are
+            through to the next round after a bloody performance, but this
+            morning we debate who their greatest competition will be.
+          </div>
+
+          <div class="dt-item">
+            <span class="dt-time">09:12</span>
+            TODAY AT THE SOURCE: Jericho Hunt interviews Woodchipper, to discuss
+            our hungry city’s buffet line of firearms and firearm accessories
+            and some new products that are coming soon for sale.
+          </div>
+
+          <div class="dt-item">
+            <span class="dt-time">10.23</span>
+            SPONSORED: Mr. A-MAAAAAAZE here with an unskippable ad to let you
+            know what’s hot this week to BUY BUY BUY. That’s right CHOOOOMBAS, I
+            know you just got paid and are looking for that next shiny something
+            to make your life better, easier, and healthier. And I’m asking you:
+            Why did you make me go out and buy this ad? You know you should have
+            just taken a Combat Cabb straight to the House of MAAAAAZE—Dock 13
+            in sunny South Night City to get you hooked up. We’ve cracked a
+            brand new cargo container of premium cyberware that will get you so
+            chromed up you’ll walk, talk, and dance into oncoming traffic as a
+            brilliant, beautiful NEW you.
+          </div>
+        </div>
       </section>
     </div>
+    <script type="module" src="scripts/script.js"></script>
+    <script type="module" src="scripts/auth.js"></script>
   </body>
 </html>

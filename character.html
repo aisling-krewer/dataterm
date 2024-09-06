@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DataTerm</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html"><div class="welcome">Welcome Guest</div></a>
+      <div class="weather">
+        <div class="temperature">Current Temperature: 25°C</div>
+        <div class="conditions">Weather Conditions: Sunny</div>
+      </div>
+    </div>
+    <div id="newsfeed">
+      <!--Section: Welcome to Dataterm Network-->
+      <div class="dt-entry">
+        <div id="stat-block">
+          <div id="core-stat">
+                <span>INT</span><input class='stat' id="skill-INT" type="number" value="2" min="2" max="8" />
+                <span>REF</span><input class='stat' id="skill-REF" type="number" value="2" min="2" max="8" />
+                <span>DEX</span><input class='stat' id="skill-DEX" type="number" value="2" min="2" max="8" />
+                <span>TECH</span><input class='stat' id="skill-TECH" type="number" value="2" min="2" max="8" />
+                <span>COOL</span><input class='stat' id="skill-COOL" type="number" value="2" min="2" max="8" />
+                <span>WILL</span><input class='stat' id="skill-WILL" type="number" value="2" min="2" max="8" />
+                <span>EMP</span><input class='stat' id="skill-EMP" type="number" value="2" min="2" max="8" />
+                <span>LUCK</span><input class='stat' id="skill-LUCK" type="number" value="2" min="2" max="8" />
+                <span>MOVE</span><input class='stat' id="skill-MOVE" type="number" value="2" min="2" max="8" />
+                <span>BODY</span><input class='stat' id="skill-BODY" type="number" value="2" min="2" max="8" />
+            
+            <button id="verify-button">Verify Points</button>
+            <p id="message"></p>
+          </div>
+          <div id="derived-stat">
+            <span>Humanity</span><input id="skill-humanity" type="number" />
+            <span>Hit Points</span><input id="skill-hp" type="number" />
+          </div>
+        </div>
+        <div class="skills-category">
+          <h3>Awareness Skills</h3>
+          <div class="skill-item">
+            Concentration (WILL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="will-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Conceal/Reveal Object (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Lip Reading (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Perception (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Tracking (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Body Skills</h3>
+          <div class="skill-item">
+            Athletics (DEX)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="dex-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Contortionist (DEX)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="dex-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Dance (DEX)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="dex-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Endurance (WILL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="will-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Resist Torture/Drugs (WILL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="will-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Stealth (DEX)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="dex-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Control Skills</h3>
+          <div class="skill-item">
+            Drive Land Vehicle (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Pilot Air Vehicle (x2) (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Pilot Sea Vehicle (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Riding (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Education Skills</h3>
+          <div class="skill-item">
+            Accounting (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Animal Handling (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Bureaucracy (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Business (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Composition (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Criminology (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Cryptography (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Deduction (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Education (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Gamble (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Language (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Streetslang
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div>STAT: _____</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Library Search (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Local Expert (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Your Home
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div>STAT: _____</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Science (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Tactics (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Wilderness Survival (INT)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="int-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+        <div class="skills-category">
+          <h3>Fighting Skills</h3>
+          <div class="skill-item">
+            Brawling (DEX)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="dex-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Evasion (DEX)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="dex-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Martial Arts (x2) (DEX)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="dex-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Melee Weapon (DEX)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="dex-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Performance Skills</h3>
+          <div class="skill-item">
+            Acting (COOL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="cool-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Play Instrument (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Ranged Weapon Skills</h3>
+          <div class="skill-item">
+            Archery (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Autofire (x2) (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Handgun (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Ranged Weapon Skills</h3>
+          <div class="skill-item">
+            Heavy Weapons (x2) (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Shoulder Arms (REF)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="ref-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Social Skills</h3>
+          <div class="skill-item">
+            Bribery (COOL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="cool-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Conversation (EMP)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="emp-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Human Perception (EMP)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="emp-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Interrogation (COOL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="cool-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Persuasion (COOL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="cool-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Personal Grooming (COOL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="cool-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Streetwise (COOL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="cool-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Trading (COOL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="cool-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Wardrobe & Style (COOL)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="cool-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+        <div class="skills-category">
+          <h3>Technique Skills</h3>
+          <div class="skill-item">
+            Air Vehicle Tech (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Basic Tech (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Cybertech (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Demolitions (x2) (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Electronics/Security Tech (x2) (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            First Aid (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Forgery (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Land Vehicle Tech (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Paint/Draw/Sculpt (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Paramedic (x2) (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Photography/Film (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Pick Lock (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Pick Pocket (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Sea Vehicle Tech (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+          <div class="skill-item">
+            Weaponstech (TECH)
+            <div class="skill-details">
+              <div>LVL: _____</div>
+              <div class="tech-skill">STAT:</div>
+              <div>BASE: _____</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="scripts/script.js"></script>
+  </body>
+</html>

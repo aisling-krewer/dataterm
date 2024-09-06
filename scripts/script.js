@@ -5,6 +5,16 @@ import {
   get
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+};
+  
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
@@ -48,7 +58,7 @@ function generateNightMarket(categories) {
   let marketHTML = "";
 
   selectedCategories.forEach((categoryKey) => {
-    marketHTML += `<div class='listing'><h2>Category: ${categoryKey}</h2>`;
+    marketHTML += `<div class='listing'><h2>Category: ${categoryKey}</h2><div class="dt-line"></div>`;
 
     const subcategories = categories[0][categoryKey][0];
     const subcategoryKeys = Object.keys(subcategories);
@@ -58,7 +68,7 @@ function generateNightMarket(categories) {
     );
 
     selectedSubcategories.forEach((subcategoryKey) => {
-      marketHTML += `<h3>Subcategory: ${subcategoryKey}</h3>`;
+      marketHTML += `<h4>Subcategory: ${subcategoryKey}</h4>`;
 
       const items = subcategories[subcategoryKey];
       const selectedItems = getRandomElements(
@@ -76,4 +86,50 @@ function generateNightMarket(categories) {
   });
 
   return marketHTML;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const button = document.getElementById('verify-button');
+  
+  button.addEventListener('click', function() {
+      verifyAllocation();
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const button = document.getElementById('verify-button');
+  
+  button.addEventListener('click', function() {
+      verifyAllocation();
+  });
+});
+
+function verifyAllocation() {
+  const maxPoints = 62;
+  const inputs = document.querySelectorAll('.stat');
+  let totalPoints = 0;
+  let valid = true;
+  let message = "";
+
+  inputs.forEach(input => {
+      // Parse input value, default to 0 if the value is not a valid number
+      const value = parseInt(input.value) || 0;
+
+      // Ensure value is between 2 and 8
+      if (value < 2 || value > 8) {
+          valid = false;
+      }
+      totalPoints += value;
+  });
+
+  if (!valid) {
+      message = "Each skill must be between 2 and 8.";
+  } else if (totalPoints !== maxPoints) {
+
+      message = `You must allocate exactly ${maxPoints} points. Currently allocated: ${totalPoints}.`;
+  } else {
+      message = "Points allocated correctly!";
+  }
+
+  document.getElementById('message').textContent = message;
 }
