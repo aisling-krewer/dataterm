@@ -7,13 +7,15 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
-};
+    apiKey: "AIzaSyBcHx7sYWlgUIGUA7imjmb5JKYFPAxbRcg",
+    authDomain: "dataterm-5837a.firebaseapp.com",
+    databaseURL:
+      "https://dataterm-5837a-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "dataterm-5837a",
+    storageBucket: "dataterm-5837a.appspot.com",
+    messagingSenderId: "235367140412",
+    appId: "1:235367140412:web:8f0ffb5dad9d13d2804739",
+  };
   
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -110,6 +112,10 @@ function verifyAllocation() {
   let totalPoints = 0;
   let valid = true;
   let message = "";
+  let bodyValue = 0;
+  let willValue = 0;
+  let empValue = 0;
+  let humanityPoints = 0;
 
   inputs.forEach(input => {
       // Parse input value, default to 0 if the value is not a valid number
@@ -119,17 +125,57 @@ function verifyAllocation() {
       if (value < 2 || value > 8) {
           valid = false;
       }
+
+      // Store BODY, WILL, and EMP values for respective calculations
+      if (input.id === 'skill-BODY') {
+          bodyValue = value;
+      }
+      if (input.id === 'skill-WILL') {
+          willValue = value;
+      }
+      if (input.id === 'skill-EMP') {
+          empValue = value;
+      }
+
       totalPoints += value;
   });
 
   if (!valid) {
       message = "Each skill must be between 2 and 8.";
   } else if (totalPoints !== maxPoints) {
-
       message = `You must allocate exactly ${maxPoints} points. Currently allocated: ${totalPoints}.`;
   } else {
-      message = "Points allocated correctly!";
+      // Calculate Hit Points: 10 + (5 × [BODY and WILL averaged, rounding up])
+      const averageBodyWill = Math.ceil((bodyValue + willValue) / 2);
+      const hitPoints = 10 + (5 * averageBodyWill);
+
+      // Calculate Seriously Wounded Wound Threshold (half HP, rounded up)
+      const seriouslyWoundedThreshold = Math.ceil(hitPoints / 2);
+
+      // Calculate Death Save (equal to BODY stat)
+      const deathSave = bodyValue;
+
+      // Calculate Humanity Points (10 × EMP stat)
+      humanityPoints = empValue * 10;
+
+      // Check EMP reduction based on humanity points
+      let adjustedEMP = empValue;
+      if (humanityPoints % 10 !== 0) {
+          adjustedEMP = Math.floor(humanityPoints / 10);
+      }
+
+      // Final message with all calculated values
+      message = `
+          Points allocated correctly! <br>
+          Your Hit Points are: ${hitPoints} <br>
+          Seriously Wounded Wound Threshold: ${seriouslyWoundedThreshold} <br>
+          Death Save (BODY): ${deathSave} <br>
+          Humanity Points: ${humanityPoints} <br>
+          Adjusted EMP (based on Humanity): ${adjustedEMP}
+      `;
   }
 
-  document.getElementById('message').textContent = message;
+  document.getElementById('message').innerHTML = message;
 }
+
+
