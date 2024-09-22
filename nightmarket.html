@@ -14,7 +14,9 @@
   </head>
   <body>
     <div class="header">
-      <a href="/index.html"><div class="welcome">Welcome Guest</div></a>
+      <div class="welcome">Welcome Guest</div>
+      <a href="/nightmarket.html">Night Market</a>
+      <a href="/character.html">Character</a>
       <div class="weather">
         <div class="temperature">Current Temperature: 25°C</div>
         <div class="conditions">Weather Conditions: Sunny</div>
@@ -22,14 +24,34 @@
     </div>
     <div id="newsfeed">
       <!--Section: Welcome to Dataterm Network-->
+      <div class="welcome dt-entry">
+        <h1>WELCOME TO DATATERM™</h1>
+        <div class="dt-line"></div>
+        <p>Download, print or check out the news with DATATERM™</p>
+
+        <form id="authForm">
+          <input type="email" id="email" placeholder="Email" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Sign Up / Sign In</button>
+        </form>
+        <button id="signOutBtn">Sign Out</button>
+        <button id="anonymousSignInBtn">Sign In Anonymously</button>
+      </div>
       <div class="welcome dt-generator">
         <h1>WELCOME TO DATATERM™</h1>
         <div class="dt-line"></div>
+        
         <h1>Night Market Generator</h1>
         <button id="generateButton">Generate Night Market</button>
         <div id="marketDisplay"></div>
       </div>
     </div>
     <script type="module" src="scripts/script.js"></script>
+    <script type="module" src="scripts/auth.js"></script>
   </body>
 </html>

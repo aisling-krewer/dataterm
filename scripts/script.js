@@ -7,15 +7,13 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBcHx7sYWlgUIGUA7imjmb5JKYFPAxbRcg",
-    authDomain: "dataterm-5837a.firebaseapp.com",
-    databaseURL:
-      "https://dataterm-5837a-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "dataterm-5837a",
-    storageBucket: "dataterm-5837a.appspot.com",
-    messagingSenderId: "235367140412",
-    appId: "1:235367140412:web:8f0ffb5dad9d13d2804739",
-  };
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+};
   
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -115,6 +113,13 @@ function verifyAllocation() {
   let bodyValue = 0;
   let willValue = 0;
   let empValue = 0;
+  let intValue = 0;
+  let refValue = 0;
+  let dexValue = 0;
+  let techValue = 0;
+  let coolValue = 0;
+  let luckValue = 0;
+  let moveValue = 0;
   let humanityPoints = 0;
 
   inputs.forEach(input => {
@@ -134,9 +139,30 @@ function verifyAllocation() {
           willValue = value;
       }
       if (input.id === 'skill-EMP') {
-          empValue = value;
-      }
-
+        empValue = value;
+    }
+    if (input.id === 'skill-INT') {
+        intValue = value;
+    }
+    if (input.id === 'skill-REF') {
+        refValue = value;
+    }
+    if (input.id === 'skill-DEX') {
+        dexValue = value;
+    }
+    if (input.id === 'skill-TECH') {
+        techValue = value;
+    }
+    if (input.id === 'skill-COOL') {
+        coolValue = value;
+    }
+    if (input.id === 'skill-LUCK') {
+        luckValue = value;
+    }
+    if (input.id === 'skill-MOVE') {
+        moveValue = value;
+    }
+    
       totalPoints += value;
   });
 
@@ -173,9 +199,92 @@ function verifyAllocation() {
           Humanity Points: ${humanityPoints} <br>
           Adjusted EMP (based on Humanity): ${adjustedEMP}
       `;
+      document.getElementById('skill-humanity').innerHTML = humanityPoints;
+      document.getElementById('skill-hp').innerHTML = hitPoints;
+      
+      //find each instance of a class and change the innerHTML to the value of the variable
+      document.querySelectorAll('.will-skill').forEach(function(element) {
+        element.innerHTML = willValue;
+    });
+    document.querySelectorAll('.int-skill').forEach(function(element) {
+      element.innerHTML = intValue;
+    });
+    document.querySelectorAll('.ref-skill').forEach(function(element) {
+      element.innerHTML = refValue;
+    });
+    document.querySelectorAll('.dex-skill').forEach(function(element) {
+      element.innerHTML = dexValue;
+    });
+    document.querySelectorAll('.tech-skill').forEach(function(element) {
+      element.innerHTML = techValue;
+    });
+    document.querySelectorAll('.cool-skill').forEach(function(element) {
+      element.innerHTML = coolValue;
+    });
+    document.querySelectorAll('.luck-skill').forEach(function(element) {
+      element.innerHTML = luckValue;
+    });
+    document.querySelectorAll('.move-skill').forEach(function(element) {
+      element.innerHTML = moveValue;
+    });
+
   }
 
   document.getElementById('message').innerHTML = message;
+  
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  const verifyButton = document.getElementById('verify-skills');
+
+  verifyButton.addEventListener('click', function() {
+      verifySkills();
+  });
+});
+
+// Skills with x2 cost
+const doubleCostSkills = ["MartialArts", "HeavyWeapons", "PilotAirVehicle", "PilotSeaVehicle", "Paramedic"]; // Add more x2 skills if needed
+
+function verifySkills() {
+  const totalSkillPoints = 86;
+  let pointsUsed = 0;
+  let skillMessage = "";
+  let valid = true;
+
+  // Retrieve input values
+  const inputs = document.querySelectorAll('input[type="number"]');
+
+  inputs.forEach(input => {
+      const skillName = input.id.split('-')[1]; // Skill name derived from input ID
+      let skillValue = parseInt(input.value) || 0;
+      
+      // Check if any skill exceeds max level of 6 or is lower than 2
+      if (skillValue < 2 || skillValue > 6) {
+          valid = false;
+      }
+
+      // Add skill points used, consider x2 cost skills
+      if (doubleCostSkills.includes(skillName)) {
+          pointsUsed += (skillValue - 2) * 2; // Minimum of 2, so subtract 2 and multiply by 2
+      } else {
+          pointsUsed += (skillValue - 2); // Regular cost for other skills (1 point per level)
+      }
+  });
+
+  // Add 4 free levels for Language skill
+  const languageInput = document.getElementById('skill-Language');
+  const languageLevel = parseInt(languageInput.value) || 0;
+  pointsUsed -= 4; // Deduct 4 free points from Language
+
+  // Validate and display results
+  if (!valid) {
+      skillMessage = "Each skill must be between 2 and 6.";
+  } else if (pointsUsed > totalSkillPoints) {
+      skillMessage = `You have exceeded the maximum of 86 points. Points used: ${pointsUsed}`;
+  } else {
+      skillMessage = `Skills allocated correctly! Points used: ${pointsUsed}`;
+  }
+
+  document.getElementById('skill-message').textContent = skillMessage;
+}
 
