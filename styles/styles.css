@@ -181,3 +181,33 @@ body {
   width: 100%;
   opacity: 0.8;
 }
+
+.dt-char-sheet{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#stat-block{
+  flex: 1 0 100%;
+}
+
+.class-input {
+  display:flex;
+  flex-direction:column;
+}
+#core-stat {
+  display: flex;
+  justify-content: space-evenly;
+}
+.stat-input label {
+  display: block;
+}
+
+.skills-category {
+  flex: 1 1 50%;
+}
+
+.skill-details {
+  display: inline-flex;
+}

@@ -7,12 +7,13 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID
 };
   
 // Initialize Firebase
@@ -246,11 +247,11 @@ document.addEventListener('DOMContentLoaded', function() {
 const doubleCostSkills = ["MartialArts", "HeavyWeapons", "PilotAirVehicle", "PilotSeaVehicle", "Paramedic"]; // Add more x2 skills if needed
 
 function verifySkills() {
-  const totalSkillPoints = 86;
+  let totalSkillPoints = 86;
   let pointsUsed = 0;
   let skillMessage = "";
   let valid = true;
-
+console.log (totalSkillPoints);
   // Retrieve input values
   const inputs = document.querySelectorAll('input[type="number"]');
 
@@ -277,11 +278,17 @@ function verifySkills() {
   pointsUsed -= 4; // Deduct 4 free points from Language
 
   // Validate and display results
+  console.log(pointsUsed > totalSkillPoints);
   if (!valid) {
       skillMessage = "Each skill must be between 2 and 6.";
-  } else if (pointsUsed > totalSkillPoints) {
-      skillMessage = `You have exceeded the maximum of 86 points. Points used: ${pointsUsed}`;
-  } else {
+  }
+  if (pointsUsed > totalSkillPoints) {
+    console.log(pointsUsed, + ', ' + totalSkillPoints);
+      skillMessage += ` You have exceeded the maximum of 86 points. Points used: ${pointsUsed}`;
+  } else if (pointsUsed < totalSkillPoints) {
+      skillMessage += ` You still have points to allocate. Remaining: ${ totalSkillPoints - pointsUsed}`;
+  }
+  if(valid && pointsUsed === totalSkillPoints) {
       skillMessage = `Skills allocated correctly! Points used: ${pointsUsed}`;
   }
 
