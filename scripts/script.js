@@ -5,7 +5,6 @@ import {
   get,
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -240,6 +239,11 @@ document.addEventListener("DOMContentLoaded", function () {
     verifySkills();
   });
 });
+
+//sanitize inputs, allow text, numbers and some special characters
+function sanitizeInput(input) {
+  return input.replace(/[^a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/? ]/g, "");
+}
 
 // Skills with x2 cost
 const doubleCostSkills = [

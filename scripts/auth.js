@@ -6,6 +6,9 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence,
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 import {
   getDatabase,
@@ -16,6 +19,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -33,13 +37,34 @@ const database = getDatabase(app);
 // Reference to form and buttons
 const authForm = document.getElementById("authForm");
 const signOutBtn = document.getElementById("signOutBtn");
-const user = auth.currentUser; // Get the current user from the auth module
 
-if (!user) {
-  console.log(
-    "User is not logged in. Please log in to save your character sheet."
-  );
-}
+// Set persistence
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    const user = auth.currentUser; // Get the current user from the auth module
+
+    if (!user) {
+      console.log(
+        "User is not logged in. Please log in to save your character sheet."
+      );
+      signOutBtn.style.display = "none";
+    } else {
+      console.log("User is logged in:", user);
+      authForm.style.display = "none";
+      signOutBtn.style.display = "inline";
+    }
+  })
+  .catch((error) => {
+    if (error.code === "auth/web-storage-unsupported") {
+      console.error("Web storage is not supported in this browser.");
+    }
+    else if (error.code === "auth/operation-not-allowed") {
+      console.error("Persistence is not enabled.");
+    }
+    else if (error.code){
+      console.error("Error setting persistence:", error.code, error.message);
+    }
+  });
 // Event listener for sign up/sign in form
 if (authForm) {
   authForm.addEventListener("submit", (e) => {
@@ -48,27 +73,34 @@ if (authForm) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    createUserWithEmailAndPassword(auth, email, password)
+    // Try to sign in first, if it fails, create a new user
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("User signing up");
+        // Signed in
         const user = userCredential.user;
-        console.log("User signed up:", user);
+        console.log("User signed in:", user);
+        authForm.style.display = "none";
+        signOutBtn.style.display = "inline";
       })
       .catch((error) => {
-        if (error.code === "auth/email-already-in-use") {
-          console.log("User already exists, signing in");
-          signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-              const user = userCredential.user;
-              console.log("User signed in:", user);
-              localStorage.setItem("userId", user.uid);
-            })
-            .catch((signInError) => {
-              console.error("Error signing in:", signInError.message);
-            });
-        } else {
-          console.error("Error signing up:", error.message);
-        }
+        // Handle sign-in errors here
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error("Error signing in:", errorCode, errorMessage);
+        return createUserWithEmailAndPassword(auth, email, password);
+      })
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log("User signed up:", user);
+        authForm.style.display = "none";
+        signOutBtn.style.display = "inline";
+      })
+      .catch((error) => {
+        // Handle sign-up errors here
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error("Error signing up:", errorCode, errorMessage);
       });
   });
 }
@@ -80,45 +112,18 @@ if (signOutBtn) {
     signOut(auth)
       .then(() => {
         console.log("User signed out");
+        authForm.style.display = "inline";
+        signOutBtn.style.display = "none";
       })
       .catch((error) => {
         console.error("Error signing out:", error.message);
       });
   });
 }
-// Observe user state changes
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const userId = user.uid;
-    const userRef = ref(database, "users/" + userId);
 
-    // Check if the user record already exists
-    get(child(ref(database), `users/${userId}`))
-      .then((snapshot) => {
-        if (!snapshot.exists()) {
-          // If the user record doesn't exist, create it
-          set(userRef, {
-            email: user.email,
-            createdAt: Date.now(),
-          })
-            .then(() => {
-              console.log("User record created successfully.");
-              localStorage.setItem("userId", user.uid);
-            })
-            .catch((error) => {
-              console.error("Error creating user record: ", error);
-            });
-        }
-      })
-      .catch((error) => {
-        console.error("Error checking user record: ", error);
-      });
-  } else {
-    // User is signed out
-    console.log("User is signed out.");
-    localStorage.removeItem("userId", user.uid);
-  }
-});
+function sanitizeInput(input) {
+  return input.replace(/[^a-zA-Z0-9.,\-_@!#$%^&*()_+-]/g, "");
+}
 
 async function saveCharacterSheet() {
   const user = auth.currentUser; // Get the current user from the auth module
@@ -127,6 +132,10 @@ async function saveCharacterSheet() {
     alert(
       "User is still not logged in. Please log in to save your character sheet."
     );
+    return;
+  }
+  if (!document.getElementById("characterName").value) {
+    alert("Please enter a character name to save the character sheet.");
     return;
   }
 
