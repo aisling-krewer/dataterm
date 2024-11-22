@@ -1,4 +1,4 @@
-.welcome {
+#welcome {
   font-size: 20px;
 }
 
@@ -93,7 +93,7 @@ body {
   color: red;
 }
 
-.welcome.dt-entry {
+#welcome.dt-entry {
   padding: 25px;
 }
 
@@ -193,7 +193,7 @@ body {
   box-shadow: 0 0 15px rgba(255, 0, 68, 0.6);
 }
 
-.welcome,
+#welcome,
 .temperature,
 .conditions,
 .dt-time {

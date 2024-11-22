@@ -47,25 +47,47 @@ setPersistence(auth, browserLocalPersistence)
       console.log(
         "User is not logged in. Please log in to save your character sheet."
       );
-      signOutBtn.style.display = "none";
+      updateUI(null, "logging_out");
     } else {
-      console.log("User is logged in:", user);
-      authForm.style.display = "none";
-      signOutBtn.style.display = "inline";
+      console.log("Persistence is set");
+      console.log("User is logged in");
+      updateUI(user, "logging_in");
     }
   })
   .catch((error) => {
     if (error.code === "auth/web-storage-unsupported") {
       console.error("Web storage is not supported in this browser.");
-    }
-    else if (error.code === "auth/operation-not-allowed") {
+    } else if (error.code === "auth/operation-not-allowed") {
       console.error("Persistence is not enabled.");
-    }
-    else if (error.code){
+    } else if (error.code) {
       console.error("Error setting persistence:", error.code, error.message);
     }
   });
 // Event listener for sign up/sign in form
+function updateUI(user, state) {
+  console.log("Updating UI" + state);
+  if (state === "logging_in") {
+    console.log("logged in");
+    if (authForm) {
+      authForm.style.display = "none";
+    }
+    if (signOutBtn) {
+      signOutBtn.style.display = "inline";
+    }
+    document.getElementById("welcome").innerHTML = "Welcome " + user.email;
+    document.getElementById("generateButton").value = "ACCESS NIGHT MARKET";
+  } else if (state === "logging_out") {
+    console.log("User signed out");
+    if (authForm) {
+      authForm.style.display = "inline";
+    }
+    if (signOutBtn) {
+      signOutBtn.style.display = "none";
+    }
+    document.getElementById("welcome").innerHTML = "Welcome Guest";
+    document.getElementById("generateButton").value = "ACCESS DENIED";
+  }
+}
 if (authForm) {
   authForm.addEventListener("submit", (e) => {
     console.log("Signing up");
@@ -78,9 +100,7 @@ if (authForm) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log("User signed in:", user);
-        authForm.style.display = "none";
-        signOutBtn.style.display = "inline";
+        updateUI(user, "logging_in");
       })
       .catch((error) => {
         // Handle sign-in errors here
@@ -92,9 +112,7 @@ if (authForm) {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log("User signed up:", user);
-        authForm.style.display = "none";
-        signOutBtn.style.display = "inline";
+        updateUI(user, "logging_in");
       })
       .catch((error) => {
         // Handle sign-up errors here
@@ -108,12 +126,9 @@ if (authForm) {
 if (signOutBtn) {
   // Event listener for signing out
   signOutBtn.addEventListener("click", () => {
-    console.log("Signing out");
     signOut(auth)
       .then(() => {
-        console.log("User signed out");
-        authForm.style.display = "inline";
-        signOutBtn.style.display = "none";
+        updateUI(null, "logging_out");
       })
       .catch((error) => {
         console.error("Error signing out:", error.message);
@@ -262,13 +277,8 @@ async function saveCharacterSheet() {
     },
   };
 
-  console.log("Saving character sheet:", characterData); // Debug: Log the character data
-
   // Use Firebase Database to save data
   try {
-    console.log("Saving character sheet...");
-    console.log("userId", userId);
-    console.log("characterId", characterId);
     await set(
       ref(database, `users/${userId}/characterSheets/${characterId}`),
       characterData
@@ -280,6 +290,52 @@ async function saveCharacterSheet() {
   }
 }
 
-document
-  .getElementById("saveCharacterSheet")
-  .addEventListener("click", saveCharacterSheet);
+// function to load character sheet from firebase using the character name
+async function loadCharacterSheet() {
+  const user = auth.currentUser; // Get the current user from the auth module
+  if (!user) {
+    alert(
+      "User is still not logged in. Please log in to save your character sheet."
+    );
+    return;
+  }
+  const userId = user.uid; // Get user ID
+  const characterName = document.getElementById("characterName").value; // Get character name from input
+  const characterId = user.uid + characterName; // Generate a unique character ID
+console.log(`users/${userId}/characterSheets/${characterId}`);
+  // Use Firebase Database to load data
+  try {
+    const characterSheetSnapshot = await get(
+      ref(database, `users/${userId}/characterSheets/${characterId}`)
+    );
+    const characterSheet = characterSheetSnapshot.val();
+    if (characterSheet) {
+      // Load character data into input fields
+      document.getElementById("characterName").value = characterSheet.name;
+      for (const [key, value] of Object.entries(characterSheet.stats)) {
+        document.getElementById(key).value = value;
+      }
+      for (const [key, value] of Object.entries(characterSheet.skills)) {
+        document.getElementById(key).value = value;
+      }
+      alert("Character sheet loaded successfully!");
+    } else {
+      alert("Character sheet not found.");
+    }
+  } catch (error) {
+    console.error("Error loading character sheet:", error);
+    alert("Failed to load character sheet: " + error.message);
+  }
+}
+
+if (document.getElementById("saveCharacterSheet")) {
+  document
+    .getElementById("saveCharacterSheet")
+    .addEventListener("click", saveCharacterSheet);
+}
+
+if (document.getElementById("loadCharacterSheet")) {
+  document
+    .getElementById("loadCharacterSheet")
+    .addEventListener("click", loadCharacterSheet);
+}

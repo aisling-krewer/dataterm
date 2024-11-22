@@ -261,7 +261,7 @@ function verifySkills() {
   let valid = true;
   console.log(totalSkillPoints);
   // Retrieve input values
-  const inputs = document.querySelectorAll('input[type="number"]');
+  const inputs = document.querySelectorAll('input[class="skill-input"]');
 
   inputs.forEach((input) => {
     const skillName = input.id.split("-")[1]; // Skill name derived from input ID
@@ -270,6 +270,7 @@ function verifySkills() {
     // Check if any skill exceeds max level of 6 or is lower than 2
     if (skillValue < 2 || skillValue > 6) {
       valid = false;
+      console.log(skillName + ' is invalid:' + skillValue);
     }
 
     // Add skill points used, consider x2 cost skills
@@ -286,6 +287,7 @@ function verifySkills() {
   pointsUsed -= 4; // Deduct 4 free points from Language
 
   // Validate and display results
+  console.log('points used ' + pointsUsed + 'vs allocated' +totalSkillPoints);
   console.log(pointsUsed > totalSkillPoints);
   if (!valid) {
     skillMessage = "Each skill must be between 2 and 6.";

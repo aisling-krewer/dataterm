@@ -8,16 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+      href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"/>
   </head>
   <body>
     <div class="header">
-      <a href="/index.html"><div class="welcome">Welcome Guest</div></a>
+      <a href="/index.html"><div id="welcome">Welcome Guest</div></a>
       <a href="/nightmarket.html">Night Market</a>
-      <a href="/character.html">Character</a>
-      <div class="weather">
+      <a href="/character.html">Character Stats</a>
+      <div id="weather">
         <div class="temperature">Current Temperature: 25°C</div>
         <div class="conditions">Weather Conditions: Sunny</div>
       </div>
@@ -26,6 +24,7 @@
       <!--Section: Welcome to Dataterm Network-->
       <div class="dt-entry dt-char-sheet">
         <button id="saveCharacterSheet">Save Character Sheet</button>
+        <button id="loadCharacterSheet">Load Character Sheet</button>
         <label>Character Name:</label><input type="text" id="characterName" />
         <div id="stat-block">
           <div id="core-stat">
@@ -59,7 +58,7 @@
             <span>concentration</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-concentration"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-concentration"></div>
               <div class="will-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -68,7 +67,7 @@
             <span>concealreveal </span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-concealreveal"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-concealreveal"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -77,7 +76,7 @@
             <span>LipReading</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-LipReading"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-LipReading"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -86,7 +85,7 @@
             <span>Perception</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Perception"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Perception"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -95,7 +94,7 @@
             <span>Tracking</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Tracking"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Tracking"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -108,7 +107,7 @@
             <span>Athletics</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Athletics"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Athletics"></div>
               <div class="dex-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -117,7 +116,7 @@
             <span>Contortionist</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Contortionist"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Contortionist"></div>
               <div class="dex-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -126,7 +125,7 @@
             <span>Dance</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Dance"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Dance"></div>
               <div class="dex-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -135,7 +134,7 @@
             <span>Endurance</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Endurance"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Endurance"></div>
               <div class="will-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -144,7 +143,7 @@
             <span>ResistTortureDrugs</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-ResistTortureDrugs"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-ResistTortureDrugs"></div>
               <div class="will-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -153,7 +152,7 @@
             <span>Stealth</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Stealth"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Stealth"></div>
               <div class="dex-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -166,7 +165,7 @@
             <span>Accounting</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Accounting"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Accounting"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -175,7 +174,7 @@
             <span>AnimalHandling</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-AnimalHandling"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-AnimalHandling"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -184,7 +183,7 @@
             <span>Bureaucracy</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Bureaucracy"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Bureaucracy"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -193,7 +192,7 @@
             <span>Business</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Business"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Business"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -202,7 +201,7 @@
             <span>Composition</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Composition"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Composition"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -211,7 +210,7 @@
             <span>Criminology</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Criminology"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Criminology"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -220,7 +219,7 @@
             <span>Cryptography</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Cryptography"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Cryptography"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -229,7 +228,7 @@
             <span>Deduction</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Deduction"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Deduction"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -238,7 +237,7 @@
             <span>Education</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Education"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Education"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -247,7 +246,7 @@
             <span>Gamble</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Gamble"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Gamble"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -256,7 +255,7 @@
             <span>Language</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Language"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Language"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -265,7 +264,7 @@
             <span>Streetslang</span>
             <div id="skill-Streetslang"></div>
             <div class="skill-details">
-              <div>LVL: _____</div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Streetslang"></div>
               <div>STAT: _____</div>
               <div>BASE: _____</div>
             </div>
@@ -274,7 +273,7 @@
             <span>LibrarySearch</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-LibrarySearch"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-LibrarySearch"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -283,7 +282,7 @@
             <span>LocalExpert</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-LocalExpert"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-LocalExpert"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -310,7 +309,7 @@
             <span>Tactics</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Tactics"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Tactics"></div>
               <div class="int-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -331,7 +330,7 @@
             <span>Brawling</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Brawling"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Brawling"></div>
               <div class="dex-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -340,7 +339,7 @@
             <span>Evasion</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Evasion"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Evasion"></div>
               <div class="dex-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -349,7 +348,7 @@
             <span>MartialArts (x2)</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-MartialArts"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-MartialArts"></div>
               <div class="dex-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -358,7 +357,7 @@
             <span>Melee Weapon</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-MeleeWeapon"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-MeleeWeapon"></div>
               <div class="dex-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -371,7 +370,7 @@
             <span>Acting</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Acting"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Acting"></div>
               <div class="cool-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -380,7 +379,7 @@
             <span>PlayInstrument</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-PlayInstrument"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-PlayInstrument"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -393,7 +392,7 @@
             <span>Archery</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Archery"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Archery"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -402,7 +401,7 @@
             <span>Autofire (x2)</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Autofire"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Autofire"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -411,7 +410,7 @@
             <span>Handgun</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Handgun"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Handgun"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -420,7 +419,7 @@
             <span>HeavyWeapons (x2)</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-HeavyWeapons"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-HeavyWeapons"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -429,7 +428,7 @@
             <span>ShoulderArms</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-ShoulderArms"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-ShoulderArms"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -442,7 +441,7 @@
             <span>Bribery</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Bribery"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Bribery"></div>
               <div class="cool-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -451,7 +450,7 @@
             <span>Conversation</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Conversation"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Conversation"></div>
               <div class="emp-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -460,7 +459,7 @@
             <span>HumanPerception</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-HumanPerception"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-HumanPerception"></div>
               <div class="emp-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -469,7 +468,7 @@
             <span>Interrogation</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Interrogation"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Interrogation"></div>
               <div class="cool-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -478,7 +477,7 @@
             <span>Persuasion</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Persuasion"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Persuasion"></div>
               <div class="cool-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -487,7 +486,7 @@
             <span>PersonalGrooming</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-PersonalGrooming"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-PersonalGrooming"></div>
               <div class="cool-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -496,7 +495,7 @@
             <span>Streetwise</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Streetwise"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Streetwise"></div>
               <div class="cool-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -505,7 +504,7 @@
             <span>Trading</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Trading"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Trading"></div>
               <div class="cool-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -514,7 +513,7 @@
             <span>WardrobeStyle</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-WardrobeStyle"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-WardrobeStyle"></div>
               <div class="cool-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -526,7 +525,7 @@
             <span>AirVehicleTech</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-AirVehicleTech"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-AirVehicleTech"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -535,7 +534,7 @@
             <span>BasicTech</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-BasicTech"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-BasicTech"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -544,7 +543,7 @@
             <span>Cybertech</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Cybertech"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Cybertech"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -553,7 +552,7 @@
             <span>Demolitions (x2)</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Demolitions"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Demolitions"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -562,7 +561,7 @@
             <span>ElectronicsSecurityTech (x2) </span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-ElectronicsSecurityTech"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-ElectronicsSecurityTech"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -571,7 +570,7 @@
             <span>FirstAid</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-FirstAid"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-FirstAid"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -580,7 +579,7 @@
             <span>Forgery</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Forgery"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Forgery"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -589,7 +588,7 @@
             <span>LandVehicleTech</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-LandVehicleTech"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-LandVehicleTech"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -598,7 +597,7 @@
             <span>PaintDrawSculpt</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-PaintDrawSculpt"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-PaintDrawSculpt"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -607,7 +606,7 @@
             <span>Paramedic (x2)</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Paramedic"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Paramedic"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -616,7 +615,7 @@
             <span>PhotographyFilm</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-PhotographyFilm"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-PhotographyFilm"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -625,7 +624,7 @@
             <span>PickLock</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-PickLock"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-PickLock"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -634,7 +633,7 @@
             <span>PickPocket</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-PickPocket"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-PickPocket"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -643,7 +642,7 @@
             <span>SeaVehicleTech</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-SeaVehicleTech"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-SeaVehicleTech"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -652,7 +651,7 @@
             <span>Weaponstech</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Weaponstech"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Weaponstech"></div>
               <div class="tech-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -664,7 +663,7 @@
             <span>DriveLandVehicle</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-DriveLandVehicle"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-DriveLandVehicle"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -673,7 +672,7 @@
             <span>PilotAirVehicle (x2)</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-PilotAirVehicle"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-PilotAirVehicle"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -682,7 +681,7 @@
             <span>PilotSeaVehicle</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-PilotSeaVehicle"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-PilotSeaVehicle"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
@@ -691,7 +690,7 @@
             <span>Riding</span>
           
             <div class="skill-details">
-              <div>LVL: <input type="number" min="2" value="2" id="skill-Riding"></div>
+              <div>LVL: <input class='skill-input' type="number" min="2" value="2" id="skill-Riding"></div>
               <div class="ref-skill">STAT:</div>
               <div>BASE: _____</div>
             </div>
